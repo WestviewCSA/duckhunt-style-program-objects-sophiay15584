@@ -27,9 +27,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	 */
 	private Duck duckObject = new Duck();
 	private Background myBackground = new Background();
-	private Dog dogObject = new Dog();
+	private Background Background = new Background("foreground.PNG");
+	private Background Scoretables = new Background("Scoretables.PNG");
 	private MyCursor cursor = new MyCursor();
-	
+	private Tokage tokage = new Tokage("tokage no fish.PNG");
 	
 	public void paint(Graphics pen) {
 		
@@ -44,7 +45,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//for objects, you call methods on them using the dot operator
 		//methods use always involve parenthesis
 		duckObject.paint(pen);
-		dogObject.paint(pen);		
+		tokage.paint(pen);
+		Background.paint(pen);
+		Scoretables.paint(pen);
 		cursor.paint(pen);
 	}
 	

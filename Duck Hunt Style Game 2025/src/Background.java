@@ -39,6 +39,20 @@ public class Background {
         init(x, y); // Set up the starting location and size
     }
     
+    public Background(String filename) {
+		img = getImage("/imgs/"+filename); //load the image for Tree
+
+		//alter these
+		scaleX = 1.0;
+		scaleY = 1.0;
+		x = 0;
+		y = 0;
+		
+		tx = AffineTransform.getTranslateInstance(0, 0);
+		init(x, y); 				//initialize the location of the image
+									//use your variables
+	}
+    
     //2nd constructor to initialize location and scale!
     public Background(int x, int y, int scaleX, int scaleY) {
     	this();
