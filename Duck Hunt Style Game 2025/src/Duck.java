@@ -19,6 +19,7 @@ public class Duck {
 	int score = 0; 
 	int pass = (int)((Math.random()*8)+1);
 	private Background Scoretables = new Background("Scoretables.PNG",0.5,0.5,950,-400);
+	private Background Winscreen = new Background("Win.GIF",2.5,2.5,1265,150);
     // Variables to control the size (scale) of the duck image
     private double scaleX;           
     private double scaleY;           
@@ -139,7 +140,7 @@ public class Duck {
 		Scoretables.paint(g);
 
 		tokage.paint(g);
-        
+		
 		
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Courier",Font.BOLD,45));
@@ -150,6 +151,9 @@ public class Duck {
 			g.drawString("0"+pass, 1300, 101);
 		} else {
 			g.drawString("Complete!", 1300, 101);
+			g.setFont(new Font("Courier",Font.BOLD,13));
+			g.drawString("Continue if you want!", 1460, 100);
+			Winscreen.paint(g);
 		}
         //create a green hitbox
        // g.setColor(Color.GREEN);

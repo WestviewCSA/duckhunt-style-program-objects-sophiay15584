@@ -3,6 +3,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Point;
@@ -78,7 +79,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		System.out.println(mouse.getX()+":"+mouse.getY());	
 		duckObject.checkCollision(mouse.getX()-50, mouse.getY()-50);
 		}
-
+	
+	//GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	//String[] fonts = ge.getAvailableFontFamilyNames();
+	
+	//for(String font)
 	@Override
 	public void mouseReleased(MouseEvent mouse) {
 	    // Runs when a mouse button is released.
