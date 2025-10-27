@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -27,16 +28,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	 */
 	private Duck duckObject = new Duck();
 	private Background myBackground = new Background();
-	private Background Background = new Background("foreground.PNG");
-	private Background Scoretables = new Background("Scoretables.PNG");
+	private Background Background = new Background("foreground.PNG",1.0,1.0,0,0);
 	private MyCursor cursor = new MyCursor();
-	private Tokage tokage = new Tokage("tokage no fish.PNG");
-	
+	public int score = 0; 
+
 	public void paint(Graphics pen) {
 		
 		//this line of code is to force redraw the entire frame
 		super.paintComponent(pen);
-		
 		//background should be drawn before objects
 		//or based on how you want to LAYER 
 		myBackground.paint(pen);
@@ -45,12 +44,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//for objects, you call methods on them using the dot operator
 		//methods use always involve parenthesis
 		duckObject.paint(pen);
-		tokage.paint(pen);
 		Background.paint(pen);
-		Scoretables.paint(pen);
+		
+		//pen.setColor(Color.WHITE);
+		//pen.setFont(new Font("Courier",Font.BOLD,45));
+		//pen.drawString("0"+score, 1740, 100);
+		
 		cursor.paint(pen);
 	}
-	
 	
 	@Override
 	public void mouseClicked(MouseEvent mouse) {
@@ -145,6 +146,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		t.start();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
+		Music track1 = new Music("Track1.wav",true);
+		track1.play();
+ 
+
 		
 		//Cursor icon code
 	Toolkit toolkit = Toolkit.getDefaultToolkit();

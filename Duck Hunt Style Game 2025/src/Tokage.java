@@ -11,8 +11,8 @@ class Tokage{
 	int width, height;
 	int x, y;						//position of the object
 	int vx, vy;						//movement variables
-	double scaleWidth = 1.0;		 //change to scale image
-	double scaleHeight = 1.0; //change to scale image
+	double scaleWidth = 0.5;		 //change to scale image
+	double scaleHeight = 0.5; //change to scale image
 
 	public Tokage(String filename) {
 		img = getImage("/imgs/"+filename); //load the image for Tree
@@ -20,8 +20,8 @@ class Tokage{
 		//alter these
 		width = 0;
 		height = 0;
-		x = 0;
-		y = 0;
+		x = 1500;
+		y = 700;
 		vx = 0;
 		vy = 0;
 		
@@ -47,7 +47,9 @@ class Tokage{
 		y+=vy;
 		
 		
-			
+		if(y<=700) {
+			vy=5;
+		}
 		
 		
 		

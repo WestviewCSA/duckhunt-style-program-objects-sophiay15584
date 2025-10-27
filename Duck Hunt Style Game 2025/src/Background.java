@@ -21,6 +21,7 @@ public class Background {
     private double y;         
     
     //variables for speed
+    
     private int vx;
     private int vy;
 
@@ -39,14 +40,14 @@ public class Background {
         init(x, y); // Set up the starting location and size
     }
     
-    public Background(String filename) {
+    public Background(String filename, double ScaleX, double ScaleY, int X, int Y) {
 		img = getImage("/imgs/"+filename); //load the image for Tree
 
 		//alter these
-		scaleX = 1.0;
-		scaleY = 1.0;
-		x = 0;
-		y = 0;
+		scaleX = ScaleX;
+		scaleY = ScaleY;
+		x = X;
+		y = Y;
 		
 		tx = AffineTransform.getTranslateInstance(0, 0);
 		init(x, y); 				//initialize the location of the image

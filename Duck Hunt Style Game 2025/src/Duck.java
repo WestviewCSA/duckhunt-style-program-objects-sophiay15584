@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -14,6 +15,10 @@ public class Duck {
     private AffineTransform tx;      // Used to move (translate) and resize (scale) the image
     private Image normal;
     private Image dead;
+	private Tokage tokage = new Tokage("tokage.gif");
+	int score = 0; 
+	int pass = (int)((Math.random()*8)+1);
+	private Background Scoretables = new Background("Scoretables.PNG",0.5,0.5,950,-400);
     // Variables to control the size (scale) of the duck image
     private double scaleX;           
     private double scaleY;           
@@ -103,18 +108,19 @@ public class Duck {
     	if(vx==0&&vy>=10) {
     		// fish is dead - change to dead sprite
     		img = dead;
+    		
+    		}
     		if(y>=900) {
     			vy=-(int)(Math.random()*8+3);
     			vx=(int)(Math.random()*8+3);
     			//changing back to normal sprite
     			img = normal; // normal sprite after reset
-    			
     			//50% of the time vx is negative
     			if(Math.random()<0.5) {
     				vx *= -1; 
     			}
     		}
-    	}
+    	
     	
     	//regular behavior - regular bouncing from the bottom
     	if(y>=980 || y<=0) {
@@ -130,7 +136,21 @@ public class Duck {
         g2.drawImage(img, tx, null);      // Actually draw the duck image
         update();
         init(x,y);
+		Scoretables.paint(g);
+
+		tokage.paint(g);
         
+		
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Courier",Font.BOLD,45));
+		g.drawString("0"+score, 1720, 100);
+		g.setFont(new Font("Courier",Font.BOLD,32));
+		
+		if(pass>0) {
+			g.drawString("0"+pass, 1300, 101);
+		} else {
+			g.drawString("Complete!", 1300, 101);
+		}
         //create a green hitbox
        // g.setColor(Color.GREEN);
        // g.drawRect((int)x+50, (int)y, 150,100);
@@ -182,11 +202,22 @@ public class Duck {
     	
     	//use built-in method for rectangle to check if they intersect/collide
     	if(mouse.intersects(thisObject)) {
+        	Music catch1 = new Music("caught.wav",false);    	
     		//logic if colliding
     		vx=0; //turn off vx to fall from the sky
     		vy=10; //fall y - gravity
+    		
+    		this.tokage.x = (int)x;
+    		this.tokage.y = 800;
+    		this.tokage.vy = -3;
+    		catch1.play();
+    		score+=1;
+    		pass-=1;
+    		
     		return true;
     	} else {
+    		score-=1;
+    		pass+=1;
     		return false;
     	}
     }
